@@ -27,7 +27,7 @@ def create_app(test_config=None):
         pass
 
     # A simple page to test app
-    @app.route('/')
+    @app.route('/hello')
     def hello():
         return 'Hello Jack!'
     
@@ -37,5 +37,9 @@ def create_app(test_config=None):
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    from . import blog
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
     
     return app
